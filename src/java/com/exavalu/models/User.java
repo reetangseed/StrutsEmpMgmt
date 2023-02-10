@@ -4,7 +4,6 @@
  */
 package com.exavalu.models;
 
-import com.exavalu.services.EmployeeService;
 import com.exavalu.services.LoginService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -26,6 +25,8 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     private String password;
     private String firstName;
     private String lastName;
+    private String addressLine1, addressLine2;
+    private String countryCode, stateCode, districtCode;
 
     
     private SessionMap<String, Object> sessionMap = (SessionMap) ActionContext.getContext().getSession();
@@ -78,13 +79,8 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
     public String doSignup()
     {
         String result="FAILURE";
-        
-        User user = new User();
-        user.setEmailAddress(emailAddress);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setPassword(password);
-        boolean res = LoginService.getInstance().doSignup(user);
+
+        boolean res = LoginService.getInstance().doSignup(this);
 
         if (res) {
             result="SUCCESS";
@@ -93,5 +89,96 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
             sessionMap.put("ErrorMsg",errorMsg);
         }
         return result;
+    }
+    public String doPreSignup(){
+        String result="SUCCESS";
+        ArrayList countryList = LoginService.getInstance().getAllCountries();
+        sessionMap.put("countryList", countryList);
+        
+        if(this.countryCode!=null){
+            ArrayList stateList = LoginService.getInstance().getAllStates(this.countryCode);
+            sessionMap.put("stateList", stateList);
+            sessionMap.put("user", this);
+        }
+        
+        if(this.countryCode!=null && this.stateCode!=null){
+            ArrayList stateList = LoginService.getInstance().getAllStates(this.countryCode);
+            sessionMap.put("stateList", stateList);
+            ArrayList districtList = LoginService.getInstance().getAllDistricts(this.stateCode);
+            sessionMap.put("districtList", districtList);
+            sessionMap.put("user", this);
+        }
+        
+        return result;
+    }
+
+    /**
+     * @return the addressLine1
+     */
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    /**
+     * @param addressLine1 the addressLine1 to set
+     */
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    /**
+     * @return the addressLine2
+     */
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    /**
+     * @param addressLine2 the addressLine2 to set
+     */
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    /**
+     * @return the countryCode
+     */
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    /**
+     * @param countryCode the countryCode to set
+     */
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    /**
+     * @return the stateCode
+     */
+    public String getStateCode() {
+        return stateCode;
+    }
+
+    /**
+     * @param stateCode the stateCode to set
+     */
+    public void setStateCode(String stateCode) {
+        this.stateCode = stateCode;
+    }
+
+    /**
+     * @return the districtCode
+     */
+    public String getDistrictCode() {
+        return districtCode;
+    }
+
+    /**
+     * @param districtCode the districtCode to set
+     */
+    public void setDistrictCode(String districtCode) {
+        this.districtCode = districtCode;
     }
 }

@@ -3,11 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/webdev/StrutsEmpMgmt/web/addemployee.jsp</file>
+            <file>file:/D:/webdev/StrutsEmpMgmt/src/java/com/exavalu/models/Employee.java</file>
             <file>file:/D:/webdev/StrutsEmpMgmt/web/login.jsp</file>
-            <file>file:/D:/webdev/StrutsEmpMgmt/web/editemployee.jsp</file>
+            <file>file:/D:/webdev/StrutsEmpMgmt/web/signup.jsp</file>
+            <file>file:/D:/webdev/StrutsEmpMgmt/src/java/com/exavalu/models/User.java</file>
+            <file>file:/D:/webdev/StrutsEmpMgmt/src/java/com/exavalu/models/Country.java</file>
+            <file>file:/D:/webdev/StrutsEmpMgmt/src/java/com/exavalu/services/LoginService.java</file>
+            <file>file:/D:/webdev/StrutsEmpMgmt/src/java/struts.xml</file>
+            <file>file:/D:/webdev/StrutsEmpMgmt/web/menu.jsp</file>
             <file>file:/D:/webdev/StrutsEmpMgmt/web/employeeDetails.jsp</file>
-            <file>file:/D:/webdev/StrutsEmpMgmt/web/searchEmployee.jsp</file>
         </group>
     </open-files>
 </project-private>

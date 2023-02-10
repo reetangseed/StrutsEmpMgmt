@@ -39,7 +39,7 @@
                     <a href="login.jsp">
                         <button type="button" class="btn btn-outline-light me-2" >Login</button>
                     </a>
-                    <a href="signup.jsp">
+                    <a href="PreSignUp">
                         <button type="button" class="btn btn-warning" style="background-color: #8B0000; border: none; color: white">Sign-up</button>
                     </a>
                     </c:when>

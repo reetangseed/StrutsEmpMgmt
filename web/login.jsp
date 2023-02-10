@@ -1,4 +1,5 @@
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
     <head>
@@ -24,6 +25,8 @@
                     
                 </h3>-->
 
+<c:if test='${ErrorMsg}'> ${ErrorMsg}</c:if>
+
                 <div class="form-floating">
                     <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                     <label for="floatingInput">Email address</label>
@@ -39,9 +42,11 @@
                     </label>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" style="background-color: #8B0000; border: none" type="submit">Sign in</button>
-                <a href="signup.jsp" class = "w-36 p-3" style="color: #8B0000" type="submit"> New Account? Sign Up </a>
+                            
+                <a href="PreSignUp" class = "w-36 p-3" style="color: #8B0000" type="submit"> New Account? Sign Up </a>
+                </form>
                 <p class="mt-5 mb-3 text-muted">&copy; 2017?2022</p>
-            </form>
+
         </main>
 
 

@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
     <head>
@@ -18,39 +18,91 @@
         <link href="css/signin.css" rel="stylesheet">
 
     </head>
+    
+    <script>
+        
+        function submitForm(){
+            //var countryCode = document.getElementById("countryCode").value;
+            signupForm.setAttribute("action", "PreSignUp");
+            signupForm.submit();
+        }
+    </script>
 
     <body class="text-center">
 
 
         <main class="form-signin w-100 m-auto">
-            <form action="SignUp" method="post">
+            
+            <form action="SignUp" id="signupForm" method="post">
+            
                 <img class="mb-4" src="images/exavalu_logo.png" alt="exavalu logo" width="150" height="57">
                 <h1 class="h3 mb-3 fw-normal">Create Account</h1>
 
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInput" name="emailAddress" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="floatingInput" name="emailAddress" placeholder="name@example.com" <c:if test='${user.getEmailAddress()!=null}'> value ="${user.getEmailAddress()}" </c:if>>
                     <label for="floatingInput">Email address</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" <c:if test='${user.getPassword()!=null}'> value ="${user.getPassword()}" </c:if>>
                     <label for="floatingPassword">Password</label>
                 </div>
                 <div class="form-floating">
-                    <input type="text" name="firstName" class="form-control" id="firstName" placeholder="first name">
+                    <input type="text" name="firstName" class="form-control" id="firstName" placeholder="first name" <c:if test='${user.getFirstName()!=null}'> value ="${user.getFirstName()}" </c:if>>
                     <label for="firstName">First Name</label>
                 </div>
                 <div class="form-floating">
-                    <input type="text" name="lastName" class="form-control" id="lastName" placeholder="last name">
+                    <input type="text" name="lastName" class="form-control" id="lastName" placeholder="last name" <c:if test='${user.getLastName()!=null}'> value ="${user.getLastName()}" </c:if>>
                     <label for="firstName">Last Name</label>
                 </div>
-                
+                <div class="form-floating">
+                    <input type="text" name="addressLine1" class="form-control" id="addressLine1" placeholder="Address Line 1" <c:if test='${user.getAddressLine1()!=null}'> value ="${user.getAddressLine1()}" </c:if>>
+                    <label for="addressLine1">Address Line 1</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" name="addressLine2" class="form-control" id="addressLine2" placeholder="Address Line 2" <c:if test='${user.getAddressLine2()!=null}'> value ="${user.getAddressLine2()}" </c:if>>
+                    <label for="addressLine2">Address Line 2</label>
+                </div>
+                <div class="form-floating">
+                    <select name="countryCode" class="form-select" id="countryCode" onchange="submitForm()"  required>
+                        <option value="">Select a Country</option>
+                        <c:forEach items="${countryList}" var="country">
+                            <option value=${country.getCountryCode()}  <c:if test="${country.getCountryCode().equalsIgnoreCase(user.getCountryCode())}"> selected </c:if>> ${country.getCountryName()}  </option>
 
-                <div class="checkbox mb-3">
+                        </c:forEach>
+                    </select>
+                    <label for="floatingInput">Select Country</label>
+                </div>
+                <div class="form-floating">
+                    <select name="stateCode" class="form-select" id="stateCode" onchange="submitForm()" required>
+                        <option value="">Select a State</option>
+                        <c:forEach items="${stateList}" var="state">
+                            <option value=${state.getStateCode()} <c:if test="${state.getStateCode().equalsIgnoreCase(user.getStateCode())}"> selected </c:if>> ${state.getStateName()}  </option>
+
+                        </c:forEach>
+                    </select>
+                    <label for="floatingInput">Select State</label>
+             
+                </div>
+                <div class="form-floating">
+                    <select name="districtCode" class="form-select" id="districtCode" required>
+                        <option value="">Select a District</option>
+                        <c:forEach items="${districtList}" var="district">
+                            <option value=${district.getDistrictCode()} <c:if test="${district.getDistrictCode().equalsIgnoreCase(user.getDistrictCode())}"> selected </c:if>> ${district.getDistrictName()}  </option>
+
+                        </c:forEach>
+                    </select>
+                    <label for="floatingInput">Select District</label>
+             
+                </div>
+
+<!--                <div class="checkbox mb-3">
                     <label>
                         <input type="checkbox" value="remember-me"> Remember me
                     </label>
-                </div>
+                </div>-->
+                
                 <button class="w-100 btn mt-2 btn-sm btn-primary" style="background-color: #8B0000; border: none" type="submit">Sign up</button>
+                
                 <a href="landingPage.jsp">
                     <button type="button" class = "w-100 btn mt-2 btn-sm btn-primary" style="background-color: #8B0000" type="submit">Cancel</button>
                 </a>

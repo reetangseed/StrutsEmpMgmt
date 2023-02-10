@@ -44,8 +44,13 @@
         <action name="AddEmployee" class="com.exavalu.models.Employee" method="addEmployee">
             <result name="SUCCESS">employeeDetails.jsp</result>
             <result name="FAILURE">addemployee.jsp</result>
-        </action>  
-               
-        
+        </action> 
+        <action name="PreSignUp" class="com.exavalu.models.User" method="doPreSignup">
+            
+            <result name="SUCCESS">signup.jsp</result>
+            <result name="REGISTERED">login.jsp</result>
+            <result name="FAILURE">landingPage.jsp</result>
+        </action>   
+           
     </package>
 </struts>
