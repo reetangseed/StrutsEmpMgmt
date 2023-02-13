@@ -26,6 +26,7 @@
                 </h3>-->
 
 <c:if test='${ErrorMsg}'> ${ErrorMsg}</c:if>
+<c:if test='${SuccessMsg}'> ${SuccessMsg}</c:if>
 
                 <div class="form-floating">
                     <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">

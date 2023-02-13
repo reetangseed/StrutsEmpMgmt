@@ -84,6 +84,8 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
 
         if (res) {
             result="SUCCESS";
+            String successMsg = "Account Creation Done!";
+            sessionMap.put("SuccessMsg",successMsg);
         } else {
             String errorMsg = "Account Creation Failed! Try Again?";
             sessionMap.put("ErrorMsg",errorMsg);
@@ -99,14 +101,16 @@ public class User extends ActionSupport implements ApplicationAware, SessionAwar
             ArrayList stateList = LoginService.getInstance().getAllStates(this.countryCode);
             sessionMap.put("stateList", stateList);
             sessionMap.put("user", this);
+            result="STATELIST";
         }
         
-        if(this.countryCode!=null && this.stateCode!=null){
-            ArrayList stateList = LoginService.getInstance().getAllStates(this.countryCode);
-            sessionMap.put("stateList", stateList);
+        if(this.stateCode!=null){
+//            ArrayList stateList = LoginService.getInstance().getAllStates(this.countryCode);
+//            sessionMap.put("stateList", stateList);
             ArrayList districtList = LoginService.getInstance().getAllDistricts(this.stateCode);
             sessionMap.put("districtList", districtList);
             sessionMap.put("user", this);
+            result="DISTRICTLIST";
         }
         
         return result;

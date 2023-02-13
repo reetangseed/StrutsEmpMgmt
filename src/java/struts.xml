@@ -9,7 +9,12 @@
             
             <result name="SUCCESS">employeeDetails.jsp</result>
             <result name="FAILURE">login.jsp</result>
-        </action>  
+        </action> 
+        <action name="ConsumeAPI" class="com.exavalu.models.Employee" method="getDataFromAPI">
+            
+            <result name="SUCCESS">printJsonObject.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action> 
         <action name="SignUp" class="com.exavalu.models.User" method="doSignup">
             
             <result name="SUCCESS">login.jsp</result>
@@ -47,6 +52,8 @@
         </action> 
         <action name="PreSignUp" class="com.exavalu.models.User" method="doPreSignup">
             
+            <result name="STATELIST">statelist.jsp</result>
+            <result name="DISTRICTLIST">districtlist.jsp</result>
             <result name="SUCCESS">signup.jsp</result>
             <result name="REGISTERED">login.jsp</result>
             <result name="FAILURE">landingPage.jsp</result>

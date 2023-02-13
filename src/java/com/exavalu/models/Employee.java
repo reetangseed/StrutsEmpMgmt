@@ -4,6 +4,7 @@
  */
 package com.exavalu.models;
 
+import com.exavalu.services.APIService;
 import com.exavalu.services.DepartmentService;
 import com.exavalu.services.EmployeeService;
 import com.exavalu.services.LoginService;
@@ -18,6 +19,7 @@ import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -213,6 +215,20 @@ public class Employee extends ActionSupport implements ApplicationAware, Session
         return result;
     }
     
+    public String getDataFromAPI() throws ParseException{
+        String result = "FAILURE";
+        ArrayList apiUsers = APIService.consumeDataFromAPI();
+        APIUser apiUser = new APIUser();
+        boolean res = APIService.insertDataInDB(apiUsers);
+        if(!apiUsers.isEmpty()){
+            result = "SUCCESS";
+            //String successMsg = "Entered API Data into Database!";
+            sessionMap.put("APIUsers", apiUsers);
+            sessionMap.put("APIUser", apiUser);
+            return result;
+        }
+        return result;
+    }
 
     /**
      * @return the employeeId

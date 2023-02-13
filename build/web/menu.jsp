@@ -24,6 +24,8 @@
                     <li><a href="employeeDetails.jsp" class="nav-link px-2 text-white">Show Employee</a></li>
                     <li><a href="searchEmployee.jsp" class="nav-link px-2 text-white">Search Employee</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">Edit Employee</a></li> 
+                    <li><a href="ConsumeAPI" class="nav-link px-2 text-white">Get API Data</a></li>
+                    
                     <li><a href="#" class="nav-link px-2 text-white"> <c:if test='${user.firstName!=null && user.lastName!=null}'>Welcome: ${user.firstName} ${user.lastName}</c:if></a> </li>
 
                 </ul>
